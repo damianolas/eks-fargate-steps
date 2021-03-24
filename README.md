@@ -1,3 +1,8 @@
+# Premessa
+Risorse create con questa procedura:
+- AWS EKS cluster Fargate
+- AWS Network Load Balancer (internet facing)
+
 # Procedura
 1. Crea VPC, subnet e route tables  
 2. Crea cluster EKS  
