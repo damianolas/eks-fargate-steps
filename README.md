@@ -11,13 +11,14 @@ Risorse create con questa procedura:
 5. Configura il terminal su Mac (aws CLI, access keys)  
 6. Aggiungi al terminal il cluster creato: ``` aws eks --region <value> update-kubeconfig --name <cluster_name> --profile <aws_profile> ```  
 7. Core DNS: https://docs.aws.amazon.com/eks/latest/userguide/fargate-getting-started.html#fargate-gs-coredns  
-8. Fai ripartire i pod di CoreDNS: ``` kubectl rollout restart -n <kube-system> deployment <coredns> ```     
-9. Crea un Fargate Profile per il namespace custom dedicato ai pod di progetto  
-10. Bilanciatore: https://docs.aws.amazon.com/eks/latest/userguide/load-balancing.html  
-11. IAM OIDC provider: https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html  
-12. Tagga le subnet pubbliche: ``` kubernetes.io/role/elb = 1 ```
-13. Crea controller dei bilanciatori (caso target IP e non server) https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html (usa helm)
-14. Installa nginx + NLB (torna utile solo per chiarire https://docs.aws.amazon.com/eks/latest/userguide/load-balancing.html)  
+8. Fai ripartire i pod di CoreDNS: ``` kubectl rollout restart -n <kube-system> deployment <coredns> ```
+9. Controlla la versione del CNI nello yaml di CoreDNS, perchè AWS di default monta 1.7.0 e potrebbe quindi dare un "ImagePullBackOff". Quindi sostituisci con 1.7.5 (o superiori)     
+10. Crea un Fargate Profile per il namespace custom dedicato ai pod di progetto  
+11. Bilanciatore: https://docs.aws.amazon.com/eks/latest/userguide/load-balancing.html  
+12. IAM OIDC provider: https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html  
+13. Tagga le subnet pubbliche: ``` kubernetes.io/role/elb = 1 ```
+14. Crea controller dei bilanciatori (caso target IP e non server) https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html (usa helm)
+15. Installa nginx + NLB (torna utile solo per chiarire https://docs.aws.amazon.com/eks/latest/userguide/load-balancing.html)  
     ``` Kubectl apply -f nginx-nlb-fargate.yaml ```   
     ``` kubectl edit svc ingress-nginx-controller -n ingress-nginx ```  
 		A mano bisogna creare i configmaps tcp-services e udp-services  
