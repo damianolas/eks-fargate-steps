@@ -6,7 +6,7 @@ Risorse create con questa procedura:
 # Procedura
 1. Crea VPC (DNS hostname -> Enable), subnet e route tables
 2. ECR: crea VPC endpoint per "dkr" e "api"  
-3. Crea cluster EKS  
+3. Crea cluster EKS (Subnet pubbliche per ControlPlane e private per i pods)
 4. Pod execution role: https://docs.aws.amazon.com/eks/latest/userguide/fargate-getting-started.html#fargate-sg-pod-execution-role  
 5. Fargate profile: https://docs.aws.amazon.com/eks/latest/userguide/fargate-getting-started.html#fargate-gs-create-profile  
 6. Configura il terminal su Mac (aws CLI, access keys)  
