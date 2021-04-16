@@ -4,7 +4,7 @@ Risorse create con questa procedura:
 - AWS Network Load Balancer (internet facing)
 
 # Procedura
-1. Crea VPC, subnet e route tables  
+1. Crea VPC (DNS hostname -> Enable), subnet e route tables
 2. Crea cluster EKS  
 3. Pod execution role: https://docs.aws.amazon.com/eks/latest/userguide/fargate-getting-started.html#fargate-sg-pod-execution-role  
 4. Fargate profile: https://docs.aws.amazon.com/eks/latest/userguide/fargate-getting-started.html#fargate-gs-create-profile  
