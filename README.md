@@ -12,8 +12,7 @@ Risorse create con questa procedura:
 6. Configura il terminal su Mac (aws CLI, access keys)  
 7. Aggiungi al terminal il cluster creato: ``` aws eks --region <value> update-kubeconfig --name <cluster_name> --profile <aws_profile> ```  
 8. Core DNS: https://docs.aws.amazon.com/eks/latest/userguide/fargate-getting-started.html#fargate-gs-coredns  
-9. Fai ripartire i pod di CoreDNS: ``` kubectl rollout restart -n <kube-system> deployment <coredns> ```
-10. Controlla la versione del CNI nello yaml di CoreDNS, perchè AWS di default monta 1.7.0 e potrebbe quindi dare un "ImagePullBackOff". Quindi sostituisci con 1.7.5 (o superiori)     
+9. Fai ripartire i pod di CoreDNS: ``` kubectl rollout restart -n <kube-system> deployment <coredns> ```   
 11. Crea un Fargate Profile per il namespace custom dedicato ai pod di progetto  
 12. Bilanciatore: https://docs.aws.amazon.com/eks/latest/userguide/load-balancing.html  
 13. IAM OIDC provider: https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html  
