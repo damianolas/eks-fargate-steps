@@ -20,8 +20,10 @@ Risorse create con questa procedura:
 14. IAM OIDC provider: https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html  
 15. Tagga le subnet pubbliche: ``` kubernetes.io/role/elb = 1 ```
 16. Crea controller dei bilanciatori (caso target IP e non server) https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html (usa helm)
-17. Installa nginx + NLB (torna utile solo per chiarire https://docs.aws.amazon.com/eks/latest/userguide/load-balancing.html)  (Cancella riga Allow Priviledges)
-    ``` Kubectl apply -f nginx-nlb-fargate.yaml ```   
+17. Installa nginx + NLB: 
+    ``` wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.46.0/deploy/static/provider/aws/deploy.yaml ```  
+    Cancella riga Allow Priviledges e imposta le annotation opportune per il bilanciatore
+    ``` Kubectl apply -f deploy.yaml ```  
     ``` kubectl edit svc ingress-nginx-controller -n ingress-nginx ```  
 		A mano bisogna creare i configmaps tcp-services e udp-services  
 		Nello yaml di nginx ``` - --tcp-services-configmap=ingress-nginx/tcp-services ```  
