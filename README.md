@@ -9,7 +9,7 @@ Risorse create con questa procedura:
 3. Crea cluster EKS (Subnet pubbliche per ControlPlane e private per i pods)
 4. Pod execution role: https://docs.aws.amazon.com/eks/latest/userguide/fargate-getting-started.html#fargate-sg-pod-execution-role  
 5. Fargate profile: https://docs.aws.amazon.com/eks/latest/userguide/fargate-getting-started.html#fargate-gs-create-profile  
-6. Crea un Fargate Profile per "kube-system" (quello che si crea per il coredns ha una label diversa)
+6. Crea un Fargate Profile per "kube-system" (scegli subnet private)
 7. Configura il terminal su Mac (aws CLI, access keys)  
 8. Aggiungi al terminal il cluster creato: ``` aws eks --region <value> update-kubeconfig --name <cluster_name> --profile <aws_profile> ```  
 10. Se sono pending, fai ripartire i pod di CoreDNS: ``` kubectl rollout restart -n <kube-system> deployment <coredns> ``` 
