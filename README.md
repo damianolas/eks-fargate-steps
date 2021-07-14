@@ -14,7 +14,7 @@ Risorse create con questa procedura:
 8. Aggiungi al terminal il cluster creato: ``` aws eks --region <value> update-kubeconfig --name <cluster_name> --profile <aws_profile> ```  
 10. Se sono pending, fai ripartire i pod di CoreDNS: ``` kubectl rollout restart -n <kube-system> deployment <coredns> ``` 
 12. Crea un Fargate Profile per il namespace custom dedicato ai pod di progetto
-17. Logging con Fluent: (https://docs.aws.amazon.com/eks/latest/userguide/fargate-logging.html)    
+17. Logging con Fluent: (https://docs.aws.amazon.com/eks/latest/userguide/fargate-logging.html) + policy via AWS CLI   
 14. Bilanciatore: https://docs.aws.amazon.com/eks/latest/userguide/load-balancing.html  
 15. IAM OIDC provider: https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html  
 16. Tagga le subnet pubbliche: ``` kubernetes.io/role/elb = 1 ```
