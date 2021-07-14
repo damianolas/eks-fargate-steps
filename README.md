@@ -9,18 +9,17 @@ Risorse create con questa procedura:
 3. Crea cluster EKS (Subnet pubbliche per ControlPlane e private per i pods)
 4. Pod execution role: https://docs.aws.amazon.com/eks/latest/userguide/fargate-getting-started.html#fargate-sg-pod-execution-role  
 5. Fargate profile: https://docs.aws.amazon.com/eks/latest/userguide/fargate-getting-started.html#fargate-gs-create-profile  
-6. Configura il terminal su Mac (aws CLI, access keys)  
-7. Aggiungi al terminal il cluster creato: ``` aws eks --region <value> update-kubeconfig --name <cluster_name> --profile <aws_profile> ```  
-8. Core DNS: https://docs.aws.amazon.com/eks/latest/userguide/fargate-getting-started.html#fargate-gs-coredns  
-9. Fai ripartire i pod di CoreDNS: ``` kubectl rollout restart -n <kube-system> deployment <coredns> ``` 
-10. Crea un Fargate Profile per "kube-system" (quello che si crea per il coredns ha una label diversa)  
-11. Crea un Fargate Profile per il namespace custom dedicato ai pod di progetto
+6. Crea un Fargate Profile per "kube-system" (quello che si crea per il coredns ha una label diversa)
+7. Configura il terminal su Mac (aws CLI, access keys)  
+8. Aggiungi al terminal il cluster creato: ``` aws eks --region <value> update-kubeconfig --name <cluster_name> --profile <aws_profile> ```  
+10. Se sono pending, fai ripartire i pod di CoreDNS: ``` kubectl rollout restart -n <kube-system> deployment <coredns> ``` 
+12. Crea un Fargate Profile per il namespace custom dedicato ai pod di progetto
 17. Logging con Fluent: (https://docs.aws.amazon.com/eks/latest/userguide/fargate-logging.html)    
-13. Bilanciatore: https://docs.aws.amazon.com/eks/latest/userguide/load-balancing.html  
-14. IAM OIDC provider: https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html  
-15. Tagga le subnet pubbliche: ``` kubernetes.io/role/elb = 1 ```
-16. Crea controller dei bilanciatori (caso target IP e non server) https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html (usa helm)
-17. Installa nginx + NLB: 
+14. Bilanciatore: https://docs.aws.amazon.com/eks/latest/userguide/load-balancing.html  
+15. IAM OIDC provider: https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html  
+16. Tagga le subnet pubbliche: ``` kubernetes.io/role/elb = 1 ```
+17. Crea controller dei bilanciatori (caso target IP e non server) https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html (usa helm)
+18. Installa nginx + NLB: 
     ``` wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.46.0/deploy/static/provider/aws/deploy.yaml ```  
     Cancella riga Allow Priviledges e imposta le annotation opportune per il bilanciatore
     ``` Kubectl apply -f deploy.yaml ```  
