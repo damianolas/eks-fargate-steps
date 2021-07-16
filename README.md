@@ -16,10 +16,12 @@ Risorse create con questa procedura:
 12. Crea un Fargate Profile per il namespace custom dedicato ai pod di progetto
 17. Logging con Fluent: (https://docs.aws.amazon.com/eks/latest/userguide/fargate-logging.html) + policy via AWS CLI   
 14. Bilanciatore: https://docs.aws.amazon.com/eks/latest/userguide/load-balancing.html  
-15. IAM OIDC provider: https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html  
-16. Tagga le subnet pubbliche: ``` kubernetes.io/role/elb = 1 ``` se non viene fatto in automatico (questo è il caso di un ELB internet-facing)
-17. Crea controller dei bilanciatori (caso target IP e non server) https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html (usa helm)
-18. Installa nginx + NLB: 
+15. IAM OIDC provider: https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html 
+17. Tagga le subnet pubbliche: ``` kubernetes.io/role/elb = 1 ``` se non viene fatto in automatico (questo è il caso di un ELB internet-facing)
+18. Crea controller dei bilanciatori (caso target IP e non server) https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html (usa helm)
+19. Crea un Fargate Profile per il namespace "ingress-nginx" 
+20. Installa nginx:  
+	caso NLB: 
     ``` wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.46.0/deploy/static/provider/aws/deploy.yaml ```  
     Cancella riga Allow Priviledges e imposta le annotation opportune per il bilanciatore
     ``` Kubectl apply -f deploy.yaml ```  
