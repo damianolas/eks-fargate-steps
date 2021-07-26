@@ -34,3 +34,4 @@ Risorse create con questa procedura:
 18. Dischi e persistenza: (https://docs.aws.amazon.com/eks/latest/userguide/storage.html)  
 19. Configura certificati su secret (se necessario) https://medium.com/faun/mount-ssl-certificates-in-kubernetes-pod-with-secret-8aca220896e6  
 20. Allarmi CloudWatch se utili (come unhealthy host sul bilanciatore)  
+21. Dare permessi a EKS (console e terminale) a chi non ha creato il cluster: https://aws.amazon.com/it/premiumsupport/knowledge-center/eks-api-server-unauthorized-error/
